@@ -1,5 +1,10 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
+
+
+PASTA_IMAGENS = "imagens"
+os.makedirs(PASTA_IMAGENS, exist_ok=True) 
 
 x = np.linspace(-6, 6, 500)
 
@@ -31,7 +36,7 @@ for titulo, arquivo, f, params in graficos:
     plt.title(titulo)
     plt.grid(True)
     plt.legend()
-    plt.savefig(arquivo, dpi=150)
+    plt.savefig(os.path.join(PASTA_IMAGENS, arquivo), dpi=150)
     plt.close()
 
 # 2) Imagem com todas as funções juntas
@@ -45,5 +50,5 @@ for ax, (titulo, _, f, params) in zip(axs.flat, graficos):
 for ax in axs.flat[len(graficos):]:
     ax.axis("off")
 plt.tight_layout()
-plt.savefig("todas_as_funcoes.png", dpi=150)
+plt.savefig(os.path.join(PASTA_IMAGENS, "todas_as_funcoes.png"), dpi=150)
 plt.show()
